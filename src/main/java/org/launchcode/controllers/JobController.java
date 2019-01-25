@@ -52,7 +52,7 @@ public class JobController {
         // new Job and add it to the jobData data store. Then
         // redirect to the job detail view for the new Job.
 
-        return "redirect:/job?id={jobId}";
+        return "redirect:/job?id=" + jobId;
 
     }
 }
