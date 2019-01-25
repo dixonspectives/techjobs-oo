@@ -37,7 +37,7 @@ public class JobController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(@RequestParam("id") int jobId, Model model, @ModelAttribute @Valid JobForm jobForm, Errors errors) {
+    public String add(Model model, @ModelAttribute @Valid JobForm jobForm, Errors errors) {
 
         if (errors.hasErrors()) {
             return "new-job";
@@ -46,7 +46,7 @@ public class JobController {
         Job newJob = new Job(jobForm.getName(), jobData.getEmployers().findById(jobForm.getEmployerId()), jobData.getLocations().findById(jobForm.getLocationId()), jobData.getPositionTypes().findById(jobForm.getPositionId()), jobData.getCoreCompetencies().findById(jobForm.getSkillId()));
 
         jobData.add(newJob);
-        jobId = newJob.getId();
+        int jobId = newJob.getId();
 
         // TODO #6 - Validate the JobForm model, and if valid, create a
         // new Job and add it to the jobData data store. Then
